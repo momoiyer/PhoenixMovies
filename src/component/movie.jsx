@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Like from './common/like.jsx';
+import { Link } from 'react-router-dom';
 import Pagination from './common/pagination.jsx';
 import ListGroup from './common/listGroup.jsx';
 import MoviesTable from './moviesTable.jsx';
@@ -24,7 +24,7 @@ function Movie(props) {
         setPageSize(4);
         updateMovieInfo(getMovies());
         setGenres([{ _id: "", name: 'All Genres' }, ...getGenres()]);
-        updateGenreSelection(movies,null);
+        updateGenreSelection(movies, null);
     },[count===-1]);
 
     const updateMovieInfo = (movies) => {
@@ -69,6 +69,7 @@ function Movie(props) {
     }
 
     const sortedMovie = _.orderBy(selectedMoive, [sortColumn.path], [sortColumn.order]);
+    
 
     return (
         <div>
@@ -83,6 +84,12 @@ function Movie(props) {
                         />
                     </div>
                     <div className='col'>
+                        <Link
+                            className='btn btn-primary'
+                            to="movie/new"
+                            style={{marginBottom: 20}}>
+                            New Movie
+                        </Link>
                         <p>Showing {selectedMoive.length} movies in the database </p>
                         <MoviesTable
                             movies={paginateMovies()}

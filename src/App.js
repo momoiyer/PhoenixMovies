@@ -8,6 +8,7 @@ import Customers from './component/customer';
 import Rentals from './component/rentals';
 import MovieForm from './component/movieForm';
 import LoginForm from './component/loginForm';
+import RegisterForm from './component/resigterForm';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <NavBar/>
       <main className='container'>
         <Switch>
+            <Route path="/movie/new" component={MovieForm} />
+            <Route path="/register" component={RegisterForm} />
             <Route path="/login" component={LoginForm} />
             <Route path="/movies/:id" component={MovieForm} />
             <Route path="/movies" component={Movie} />
@@ -22,7 +25,7 @@ function App() {
             <Route path="/rentals" component={Rentals} />
             <Route path="/not-found" component={NotFound} />
             <Redirect from="/" exact to="/movies" />
-            <Redirect to="/not-found" />
+            {/* <Redirect to="/not-found" /> */}
           </Switch>
         </main>
     </React.Fragment>
